@@ -1,0 +1,24 @@
+
+RewriteEngine on
+
+<IfModule mod_rewrite.c>
+
+RewriteOptions inherit
+
+  RewriteBase /
+  
+  
+  ErrorDocument 404 /404.html
+  
+  
+
+</IfModule>
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^starprofiles\.eu$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.starprofiles\.eu$
+RewriteRule ^(.*)$ "https\:\/\/starprofiles\.eu\/$1" [R=301,L]
+RewriteCond %{HTTP_HOST} ^starprofiles\.eu$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.starprofiles\.eu$
+RewriteRule ^public_html\/?(.*)$ "https\:\/\/starprofiles\.eu\/$1" [R=301,L]
+
